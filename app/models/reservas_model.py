@@ -26,9 +26,8 @@ class Reservas(db.Model):
     @staticmethod
     def get_by_id(id):
         return Reservas.query.get(id)
-    def update(self,name=None,user_id=None,restaruan_id=None,reservation_date=None,num_guests=None,special_requests=None,status = None):
-        if name is not None:
-            self.name = name
+    def update(self,user_id=None,restaruan_id=None,reservation_date=None,num_guests=None,special_requests=None,status = None):
+        print(reservation_date)
         if user_id is not None:
             self.user_id = user_id
         if restaruan_id is not None:

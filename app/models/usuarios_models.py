@@ -27,8 +27,8 @@ class Usuarios(UserMixin,db.Model):
     def get_by_id(id):
         return Usuarios.query.get(id)
     @staticmethod
-    def find_by_username(name):
-        return Usuarios.query.filter_by(name=name).first()
+    def find_by_useremail(email):
+        return Usuarios.query.filter_by(email=email).first()
 
     def has_role(self,role):
         return self.role == role

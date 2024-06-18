@@ -17,9 +17,9 @@ def register():
     if not name or not email or not phone or not phone or not password:
         return jsonify({"error": "Se requieren nombre de usuario y contraseña"}), 400
 
-    existing_user = Usuarios.find_by_username(name)
+    existing_user = Usuarios.find_by_useremail(email)
     if existing_user:
-        return jsonify({"error": "El nombre de usuario ya está en uso"}), 400
+        return jsonify({"error": "El correo electrónico ya está en uso"}), 400
 
     new_user = Usuarios(name,email,phone, password, roles)
     new_user.save()
@@ -30,13 +30,14 @@ def register():
 @user_bp.route("/login", methods=["POST"])
 def login():
     data = request.json
-    username = data.get("username")
+    useremail = data.get("email")
     password = data.get("password")
-
-    user = Usuarios.find_by_username(username)
+    print(data)
+    user = Usuarios.find_by_useremail(useremail)
+    print(user)
     if user and check_password_hash(user.password_hash, password):
         access_token = create_access_token(
-            identity={"username": username, "roles": user.roles}
+            identity={"username": user.name, "role": user.role}
         )
         return jsonify(access_token=access_token), 200
     else:

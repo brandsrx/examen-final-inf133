@@ -6,6 +6,7 @@ def render_reserva_list(reservas):
           "restaurant_id":reserva.restaruant_id,
           "reservation_date":reserva.reservation_date,
           "num_guests":reserva.num_guests,
+          "special_requests":reserva.special_requests,
           "status":reserva.status
         
         }
@@ -19,5 +20,6 @@ def render_reserva_detail(reserva):
           "restaurant_id":reserva.restaruant_id,
           "reservation_date":reserva.reservation_date,
           "num_guests":reserva.num_guests,
+          "special_requests":reserva.special_requests,
           "status":reserva.status
     }
